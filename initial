@@ -1,0 +1,92 @@
+def Newton_Raphson_Iteration(fxnew,devfx,x0):
+    x1=x0-(devfx/fxnew)
+    return x1
+def roots(fxnew,r1,r2):
+    a=fxnew[0]
+    b=fxnew[1]
+    c=fxnew[2]
+    delta=b*b-4*a*c
+    x1=(-b+pow(delta,0.5))/2*a
+    x2=(-b-pow(delta,0.5))/2*a
+    if x1>=r1 and x1<=r2:
+        return x1
+    elif x2>=r1 and x2<=r2:
+        return
+    else:
+        print("this equation have not roots")
+        
+def derivvv(fxnew):
+    devfx=fxnew
+    devfx[2]=devfx[1]
+    devfx[1]=2*devfx[0]
+    devfx[0]=0
+    return devfx
+def choosing_method():
+        print("Please,choose your method.")
+        print("1:Newton_Raphson_Iteration \n2:Bisection_Method  \n3:Von_Mises_Method \n4:Regula_Falsi_Method.")
+        number=input("number")
+        print(number)
+        a=number
+        if a=='1':
+                print("your method is Newton_Raphson_Iteration  ")
+                return a    
+        elif a=="2":
+                print("your method is Bisection_Method")
+                return a
+               
+        elif a=="3":
+                print("your method is Von_Mises_Method")
+                return a
+                
+        elif a=="4":
+                print("your method is Regula_Falsi_Method.")
+                return a
+                
+        else:
+                print("your choice is undefined,please again choosing method")
+                return choosing_method()
+                
+fx=[0,0,0,0,0,0,0]
+i=0
+fx[i]=choosing_method()
+print("please enter your equation coefficient")
+for i in range(1,4):
+    fx[i]=input("your equation coefficients:")
+print("please enterinterval of roots")
+for i in range (4,6): 
+    fx[i]=input("your enter interval of roots")
+i=i+1
+print("please enter tolerance value")
+fx[i]=input("your enter tolerance value:")
+print ("findroot",fx)
+print(fx[0])
+fxnew=[0,0,0]
+fxnew[0]=fx[1]
+fxnew[1]=fx[2]
+fxnew[2]=fx[3]
+print(fxnew)
+x0=roots(fxnew,fx[4],fx[5])
+devfx=derivvv(fxnew)
+k=0
+if fx[0]=="1":
+    x1=Newton_Raphson_Iteration(fxnew,devfx,x0)
+    error=x1-x0
+    print("rold \t rnew \t error \t k ")
+    print(x0,x1,error,k)
+    k=k+1
+    if error>0.001:
+        print("rold \t rnew \t error \t k ")
+        x0=x1
+        x1=Newton_Raphson_Iteration(fxnew,devfx,error,x0)
+        error=x1-x0
+        print("rold \t rnew \t error \t k ")
+        print(x0,"\t",x1,"\t",error,"\t",k)
+        k=k+1
+elif  fx[0]=="2":
+    print("aa")
+elif  fx[0]=="3":
+    print("aaa")
+elif  fx[0]=="4":
+    print("aaa")
+else:
+    print("210703832")
